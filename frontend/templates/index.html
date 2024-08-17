@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CMS</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'style/index.css' %}"
+    />
+  </head>
+  <body>
+    <div id="main">
+      <div id="root"></div>
+    </div>
+    <script src="{% static 'script/main.js' %}"></script>
+  </body>
+</html>
