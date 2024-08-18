@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'contacts.apps.ContactsConfig',
-    'auth.apps.AuthConfig',
+    'authentication.apps.AuthenticationConfig',
     'frontend.apps.FrontendConfig',
     'rest_framework',
     'corsheaders',
@@ -145,4 +145,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWS_CREDENTIALS = True
