@@ -1,0 +1,90 @@
+.contact-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  width: 80%;
+  margin: 0.5rem auto;
+}
+
+.contact-avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contact-info {
+  flex-grow: 1;
+  margin-left: 15px;
+}
+
+.contact-info h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.contact-info p {
+  margin: 5px 0 0;
+  color: #666;
+}
+
+.contact-invite button {
+  background: none;
+  border: 1px solid #9f376f;
+  padding: 8px;
+  color: #9f376f;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark background to highlight modal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it's on top of other content */
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Realistic shadow effect */
+  text-align: center;
+  width: 300px; /* Consistent size */
+  max-width: 90%; /* Responsive sizing */
+}
+
+.modal-content h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.modal-content p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.close-modal-button {
+  background-color: #9f376f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-modal-button:hover {
+  background-color: #7a2d58;
+}

@@ -8,6 +8,3 @@ class Contact(models.Model):
     name = models.CharField(max_length=100, null=False)
     telegram_id = models.CharField(max_length=100, null=False, unique=True)
     is_favorite = models.BooleanField()
-
-    def __str__(self):
-        return self.name

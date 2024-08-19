@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
 import Login from "./../pages/Login";
@@ -10,8 +10,11 @@ function Logout() {
   localStorage.clear();
   return <Login />;
 }
-
+const tele = window.Telegram.WebApp;
 function App() {
+  useEffect(() => {
+    tele.ready();
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
