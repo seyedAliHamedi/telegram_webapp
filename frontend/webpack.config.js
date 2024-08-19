@@ -20,6 +20,18 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.(png|jpe?g|gif|webp|svg)$/i,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8192, // File size limit to inline the SVG as a data URL
+              name: "static/media/[name].[hash:8].[ext]", // Name pattern for the file
+            },
+          },
+        ],
+      },
     ],
   },
   optimization: {

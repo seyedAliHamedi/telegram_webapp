@@ -1,0 +1,33 @@
+.custom-button {
+  background-image: linear-gradient(
+    to left,
+    #8a67ae,
+    #7b78bf,
+    #6b87cb,
+    #5c96d2,
+    #52a3d6
+  );
+  border-radius: 25px;
+  padding: 12px 45px;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.custom-button button {
+  border: none;
+  outline: none;
+  font-size: 18px;
+  color: white;
+  background: none;
+}
+.custom-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.custom-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,13 @@
+.custom_field {
+  background: #fff;
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 1rem;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+.custom_field input {
+  border: none;
+  outline: none;
+}
