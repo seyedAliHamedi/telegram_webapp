@@ -25,10 +25,10 @@ function Login() {
       alert(error);
       if (error.response) {
         console.error("Error response data:", error.response.data);
-        alert("Error: " + JSON.stringify(error.response.data));
+        alert("Error1: " + JSON.stringify(error.response.data));
       } else {
         console.error("Error:", error.message);
-        alert("Error: " + error.message);
+        alert("Error2: " + error.message);
       }
     }
   };
