@@ -2,7 +2,7 @@ import React, { Component, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoutes from "./ProtectedRoutes";
 import Login from "./../pages/Login";
-import Register from "./../pages/Register";
+import Chat from "./../pages/Chat";
 import NotFound from "./../pages/NotFound";
 import Home from "./../pages/Home";
 
@@ -20,7 +20,10 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<ProtectedRoutes childeren={<Home />} />} />
-
+        <Route
+          path="/chat"
+          element={<ProtectedRoutes childeren={<Chat />} />}
+        />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

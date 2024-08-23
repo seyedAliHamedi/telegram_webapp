@@ -10,6 +10,7 @@
   margin-bottom: 15px;
   width: 80%;
   margin: 0.5rem auto;
+  overflow: hidden; /* Prevents content from spilling outside */
 }
 
 .contact-avatar img {
@@ -22,25 +23,41 @@
 .contact-info {
   flex-grow: 1;
   margin-left: 15px;
+  overflow: hidden; /* Ensures content is contained */
+  white-space: nowrap; /* Prevents text from wrapping */
+  text-overflow: ellipsis; /* Adds ellipsis if text overflows */
 }
 
 .contact-info h3 {
   margin: 0;
   font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .contact-info p {
   margin: 5px 0 0;
   color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .contact-invite button {
   background: none;
   border: 1px solid #9f376f;
+  border-radius: 25px;
   padding: 8px;
   color: #9f376f;
   cursor: pointer;
   font-size: 16px;
+  min-width: 100px; /* Ensures button has a minimum width */
+  text-align: center; /* Centers the text inside the button */
+}
+
+.contact-invite button:hover {
+  background: #f4f4f4; /* Adds a hover effect for better UX */
 }
 
 .modal-overlay {

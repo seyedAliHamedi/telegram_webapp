@@ -14,7 +14,7 @@ function Contact({ name, telegram_id, is_favorite, onInviteClick }) {
         <p>id: {telegram_id}</p>
       </div>
       <div className="contact-invite">
-        {!is_favorite && <button onClick={onInviteClick}>Invite</button>}
+        {!is_favorite && <button onClick={onInviteClick}>Start a chat</button>}
       </div>
     </div>
   );
