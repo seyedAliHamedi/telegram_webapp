@@ -9,6 +9,16 @@ class Chat(models.Model):
 
 class Message(models.Model):
     chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
-    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    admin_sender = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
+    contact_sender = models.ForeignKey(Contact, null=True, blank=True, on_delete=models.CASCADE)
+    
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not (self.admin_sender or self.contact_sender):
+            raise ValueError("A message must have either an admin_sender or a contact_sender.")
+        if self.admin_sender and self.contact_sender:
+            raise ValueError("A message cannot have both an admin_sender and a contact_sender.")
+        super().save(*args, **kwargs)
