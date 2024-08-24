@@ -93,15 +93,18 @@
   color: #555;
 }
 
-.close-modal-button {
+.close-modal-button,
+.create-chat-button {
   background-color: #9f376f;
   color: white;
   border: none;
+  margin: 0rem 1rem;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.close-modal-button:hover {
+.close-modal-button:hover,
+.create-chat-button:hover {
   background-color: #7a2d58;
 }

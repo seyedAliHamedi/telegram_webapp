@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Contact from "./../components/Contact";
 import api from "../api";
 import "./../../static/style/home.css";
-import { useNavigate } from "react-router-dom"; // Updated to useNavigate
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [contacts, setContacts] = useState([]);
@@ -11,7 +11,7 @@ function Home() {
     id: "",
     name: "",
   });
-  const navigate = useNavigate(); // Updated to useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     getContacts();
@@ -39,6 +39,7 @@ function Home() {
     try {
       const res = await api.post("/chats/chats/", { contact: modalContent.id });
       if (res.status === 201) {
+        localStorage.setItem("navigatedFromHome", "true");
         navigate("/chat", { state: { contact: modalContent } });
       } else {
         alert("Failed to create chat. Please try again.");
@@ -55,6 +56,21 @@ function Home() {
     }
   };
 
+  const startNewChat = (contactId) => {
+    const contact = contacts.find((contact) => contact.id === contactId);
+    if (contact) {
+      openModal(contactId, contact.name);
+    }
+  };
+
+  const viewChat = (contactId) => {
+    const contact = contacts.find((contact) => contact.id === contactId);
+    if (contact) {
+      localStorage.setItem("navigatedFromHome", "true");
+      navigate("/chat", { state: { contact: contact } });
+    }
+  };
+
   return (
     <div className="home">
       <div className="contacts__container">
@@ -63,8 +79,9 @@ function Home() {
             key={contact.id}
             name={contact.name}
             telegram_id={contact.telegram_id}
-            is_favorite={contact.is_favorite}
-            onInviteClick={() => openModal(contact.id, contact.name)}
+            has_chat={contact.has_chat}
+            onInviteClick={() => startNewChat(contact.id)}
+            onViewChatClick={() => viewChat(contact.id)}
           />
         ))}
       </div>
