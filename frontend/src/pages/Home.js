@@ -39,8 +39,11 @@ function Home() {
     try {
       const res = await api.post("/chats/chats/", { contact: modalContent.id });
       if (res.status === 201) {
+        const createdChat = res.data; // Assuming the response includes chat details
         localStorage.setItem("navigatedFromHome", "true");
-        navigate("/chat", { state: { contact: modalContent } });
+        navigate("/chat", {
+          state: { chat: createdChat, contact: modalContent },
+        });
       } else {
         alert("Failed to create chat. Please try again.");
       }
@@ -63,11 +66,29 @@ function Home() {
     }
   };
 
-  const viewChat = (contactId) => {
+  const viewChat = async (contactId) => {
     const contact = contacts.find((contact) => contact.id === contactId);
     if (contact) {
-      localStorage.setItem("navigatedFromHome", "true");
-      navigate("/chat", { state: { contact: contact } });
+      try {
+        const res = await api.get(`/chats/chats/?contact=${contactId}`);
+        const chat = res.data[0];
+
+        if (chat) {
+          localStorage.setItem("navigatedFromHome", "true");
+          navigate("/chat", { state: { chat: chat, contact: contact } });
+        } else {
+          alert("Chat not found for this contact.");
+        }
+      } catch (error) {
+        alert(error);
+        if (error.response) {
+          console.error("Error response data:", error.response.data);
+          alert("Error1: " + JSON.stringify(error.response.data));
+        } else {
+          console.error("Error:", error.message);
+          alert("Error2: " + error.message);
+        }
+      }
     }
   };
 

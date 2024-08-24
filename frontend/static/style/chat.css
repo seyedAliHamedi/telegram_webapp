@@ -7,8 +7,49 @@
   margin: 20px auto;
 }
 
-.chat h1 {
-  font-size: 24px;
+.chat-header {
   margin-bottom: 20px;
   text-align: center;
+}
+
+.chat-header h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.chat-messages {
+  height: 400px; /* Adjust as needed */
+  overflow-y: auto;
+  background: linear-gradient(to bottom, #d6a4a4, #6b5b95);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.message {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  max-width: 75%;
+  clear: both;
+  position: relative;
+}
+
+.message.admin {
+  background-color: #007bff; /* Blue for admin messages */
+  margin-left: auto;
+  text-align: right;
+}
+
+.message.user {
+  background-color: #ffffff; /* White for user messages */
+  margin-right: auto;
+  text-align: left;
+}
+
+.timestamp {
+  display: block;
+  font-size: 0.75rem;
+  color: #ccc;
+  margin-top: 5px;
 }

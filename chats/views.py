@@ -11,7 +11,6 @@ class ChatListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        # Assuming only one contact for the single user context
         contact = Contact.objects.first()  # Adjust based on your contact selection logic
         return Chat.objects.filter(contact=contact)
 
@@ -24,23 +23,29 @@ class ChatDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        contact = Contact.objects.first()  # Adjust based on your contact selection logic
-        return Chat.objects.filter(contact=contact)
+        contact_id = self.request.query_params.get('contact')
+        if contact_id:
+            return Chat.objects.filter(contact_id=contact_id)
+        return Chat.objects.filter(contact=Contact.objects.first())
 
 class MessageListCreateView(generics.ListCreateAPIView):
     serializer_class = MessageSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        contact = Contact.objects.first()  # Adjust based on your contact selection logic
-        return Message.objects.filter(chat__contact=contact)
+        chat_id = self.kwargs.get('chat_id')  # Extract chat_id from URL path parameters
+        if chat_id:
+            return Message.objects.filter(chat_id=chat_id)
+        return Message.objects.none()  # Return empty queryset if no chat_id provided
 
     def perform_create(self, serializer):
-        contact = Contact.objects.first()  # Adjust based on your contact selection logic
-        chat = serializer.validated_data['chat']
-        if chat.contact != contact:
-            raise PermissionDenied("You do not have permission to add messages to this chat.")
-        serializer.save()
+        chat_id = self.request.data.get('chat') 
+        try:
+            chat = Chat.objects.get(id=chat_id)
+        except Chat.DoesNotExist:
+            raise PermissionDenied("The chat does not exist.")
+        serializer.save(chat=chat)
+
 
 class MessageDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MessageSerializer

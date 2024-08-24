@@ -19,13 +19,6 @@ function App() {
 
   useEffect(() => {
     tele.ready();
-    console.log("App useEffect triggered");
-    console.log("Current Path:", location.pathname);
-    console.log(
-      "navigatedFromHome:",
-      localStorage.getItem("navigatedFromHome"),
-      localStorage.getItem("navigatedFromHome") == "true"
-    );
 
     if (location.pathname == "/chat" || location.pathname == "/chat/") {
       if (localStorage.getItem("navigatedFromHome") == "true") {
