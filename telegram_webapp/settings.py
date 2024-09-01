@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'contacts.apps.ContactsConfig',
     'chats.apps.ChatsConfig',
-    'authentication.apps.AuthenticationConfig',
     'frontend.apps.FrontendConfig',
     'rest_framework',
     'corsheaders',

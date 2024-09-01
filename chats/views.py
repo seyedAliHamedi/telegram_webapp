@@ -4,11 +4,9 @@ from rest_framework.exceptions import PermissionDenied
 from contacts.models import Contact
 from .models import Chat, Message
 from .serializers import ChatSerializer, MessageSerializer
-from rest_framework.permissions import IsAuthenticated
 
 class ChatListCreateView(generics.ListCreateAPIView):
     serializer_class = ChatSerializer
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         contact_id = self.request.query_params.get('contact')
@@ -29,7 +27,6 @@ class ChatListCreateView(generics.ListCreateAPIView):
 
 class ChatDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChatSerializer
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         contact_id = self.request.query_params.get('contact')
@@ -38,7 +35,6 @@ class ChatDetailView(generics.RetrieveUpdateDestroyAPIView):
 
 class MessageListCreateView(generics.ListCreateAPIView):
     serializer_class = MessageSerializer
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         chat_id = self.kwargs.get('chat_id')
@@ -55,7 +51,6 @@ class MessageListCreateView(generics.ListCreateAPIView):
 
 class MessageDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MessageSerializer
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         contact = Contact.objects.first()  # Adjust based on your contact selection logic
