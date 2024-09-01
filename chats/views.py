@@ -11,12 +11,21 @@ class ChatListCreateView(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        contact = Contact.objects.first()  # Adjust based on your contact selection logic
-        return Chat.objects.filter(contact=contact)
+        contact_id = self.request.query_params.get('contact')
+        if contact_id:
+            return Chat.objects.filter(contact_id=contact_id)
+        return Chat.objects.none()  # Return no chats if no contact is specified
 
     def perform_create(self, serializer):
-        contact = Contact.objects.first()  # Adjust based on your contact selection logic
-        serializer.save(contact=contact)
+        contact_id = self.request.data.get('contact')
+        if contact_id:
+            try:
+                contact = Contact.objects.get(id=contact_id)
+                serializer.save(contact=contact)
+            except Contact.DoesNotExist:
+                raise PermissionDenied("The contact does not exist.")
+        else:
+            raise PermissionDenied("Contact ID is required to create a chat.")
 
 class ChatDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChatSerializer
@@ -26,26 +35,23 @@ class ChatDetailView(generics.RetrieveUpdateDestroyAPIView):
         contact_id = self.request.query_params.get('contact')
         if contact_id:
             return Chat.objects.filter(contact_id=contact_id)
-        return Chat.objects.filter(contact=Contact.objects.first())
 
 class MessageListCreateView(generics.ListCreateAPIView):
     serializer_class = MessageSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        chat_id = self.kwargs.get('chat_id')  # Extract chat_id from URL path parameters
+        chat_id = self.kwargs.get('chat_id')
         if chat_id:
             return Message.objects.filter(chat_id=chat_id)
-        return Message.objects.none()  # Return empty queryset if no chat_id provided
 
     def perform_create(self, serializer):
-        chat_id = self.request.data.get('chat') 
+        chat_id = self.request.data.get('chat')
         try:
             chat = Chat.objects.get(id=chat_id)
         except Chat.DoesNotExist:
             raise PermissionDenied("The chat does not exist.")
         serializer.save(chat=chat)
-
 
 class MessageDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MessageSerializer

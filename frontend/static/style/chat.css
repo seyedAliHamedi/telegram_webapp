@@ -1,55 +1,150 @@
 .chat {
-  padding: 20px;
   background-color: #f4f4f4;
   border-radius: 10px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   max-width: 800px;
-  margin: 20px auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .chat-header {
-  margin-bottom: 20px;
-  text-align: center;
+  flex: 0.15;
+  display: flex;
+  padding: 0px 20px;
 }
 
-.chat-header h1 {
+.chat h2 {
+  padding: 0px;
+  padding-left: 10px;
+  display: inline-block;
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  font-family: "Merriweather", serif;
+  letter-spacing: 0.5px; /* Slight spacing for readability */
+  line-height: 1.4; /* Good balance between lines */
+  font-weight: 600; /* Semi-bold for emphasis */
+  color: #333;
+}
+
+.chat-header .status-container {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  color: #4caf50;
+  margin-top: 5px;
+}
+
+.chat-header .status-container .status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #4caf50;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.chat-with {
+  font-family: "Montserrat", sans-serif; /* Replace with your preferred font family */
+  font-size: 24px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.username {
+  text-transform: capitalize;
+  color: #8e6aea; /* Replace with your desired color */
+}
+
+.contact-info {
+  display: flex;
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.contact-info .info-column {
+  display: block;
+  width: 50%;
+}
+.contact-info .info-column {
+  text-align: left;
+}
+
+.contact-info .info-column p:last-child {
+  padding-left: 10px;
+}
+.contact-info p {
+  margin: 4px 0;
+}
+
+.contact-info .label {
+  font-weight: bold;
+  color: #333;
 }
 
 .chat-messages {
-  height: 400px; /* Adjust as needed */
+  flex: 0.85;
+  height: 100%;
   overflow-y: auto;
   background: linear-gradient(to bottom, #d6a4a4, #6b5b95);
   padding: 10px;
-  border-radius: 10px;
 }
 
 .message {
   margin-bottom: 15px;
-  padding: 10px;
+  padding: 0px 25px;
+  padding-top: 10px;
+  padding-bottom: 2.5px;
   border-radius: 10px;
   color: white;
   max-width: 75%;
+  word-wrap: break-word;
+  width: fit-content;
+  min-width: 45%;
   clear: both;
   position: relative;
+}
+
+.message p {
+  margin: 0px;
 }
 
 .message.admin {
   background-color: #007bff; /* Blue for admin messages */
   margin-left: auto;
-  text-align: right;
+  padding-right: 10px;
+  border-radius: 20px;
+  border-bottom-right-radius: 6px;
 }
 
 .message.user {
   background-color: #ffffff; /* White for user messages */
+  color: #000;
+  padding-left: 10px;
   margin-right: auto;
   text-align: left;
+  border-radius: 20px;
+  border-bottom-left-radius: 6px;
 }
 
 .timestamp {
   display: block;
   font-size: 0.75rem;
   color: #ccc;
-  margin-top: 5px;
+  margin: 10px 0px;
+}
+
+.message.admin .timestamp {
+  text-align: right;
+}
+
+.no-msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-size: 36px;
+  font-family: "Merriweather", serif;
 }

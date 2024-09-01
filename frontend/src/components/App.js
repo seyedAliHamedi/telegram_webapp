@@ -5,7 +5,7 @@ import Login from "./../pages/Login";
 import Chat from "./../pages/Chat";
 import NotFound from "./../pages/NotFound";
 import Home from "./../pages/Home";
-
+import Analytics from "../pages/analytics";
 function Logout() {
   localStorage.clear();
   return <Login />;
@@ -31,6 +31,7 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/chart" element={<Analytics />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/login" element={<Login />} />
       <Route path="/" element={<ProtectedRoutes childeren={<Home />} />} />

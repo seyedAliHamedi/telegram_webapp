@@ -15,7 +15,6 @@ function Chat() {
       if (chat && chat.id) {
         const chatId = chat.id;
         const response = await api.get(`/chats/chats/${chatId}/messages/`);
-        alert(response.data);
         setMessages(response.data);
       } else {
         throw new Error("Invalid chat ID");
@@ -41,24 +40,49 @@ function Chat() {
 
   return (
     <div className="chat">
+      <h2 className="chat-with">
+        Chat with{" "}
+        <span className="username">{contact ? contact.name : "Unknown"}</span>
+      </h2>
       <div className="chat-header">
-        <h1>Chat with {contact ? contact.name : "Unknown"}</h1>
+        {contact && (
+          <>
+            <div className="contact-info">
+              <div className="info-column">
+                <p className="label">Phone:</p>
+                <p>{contact.phone || "+989121101234"}</p>
+              </div>
+              <div className="info-column">
+                <p className="label">Telegram ID:</p>
+                <p>{contact.telegram_id || "@username"}</p>
+              </div>
+            </div>
+            <div className="status-container">
+              <div className="status-dot"></div>
+              <span>Online</span>
+            </div>
+          </>
+        )}
       </div>
+
       <div className="chat-messages">
         {Array.isArray(messages) && messages.length > 0 ? (
           messages.map((message) => (
             <div
               key={message.id}
-              className={`message ${
-                message.admin_sender ? "admin" : "contact"
-              }`}
+              className={`message ${message.admin_sender ? "admin" : "user"}`}
             >
               <p>{message.content}</p>
-              <span>{new Date(message.timestamp).toLocaleTimeString()}</span>
+              <span className="timestamp">
+                {new Date(message.timestamp).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </span>
             </div>
           ))
         ) : (
-          <div>No messages yet.</div>
+          <div className="no-msg">No messages yet.</div>
         )}
       </div>
     </div>

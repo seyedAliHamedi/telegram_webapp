@@ -7,5 +7,6 @@ urlpatterns = [
     path('login/', index),
     path('logout/', index),
     path('chat/', index),
+    path('chart/', index),
     path('<path:path>/', index),
 ]
